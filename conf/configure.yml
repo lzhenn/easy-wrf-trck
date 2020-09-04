@@ -1,0 +1,8 @@
+input_output:
+    input_wrf: /home/dataop/data/nmodel/wrf_2doms_enlarged/2016/201601/2016010112/wrfout_d01_2016-01-02_12:00:00
+integration:
+    time_step: 180 # in seconds
+    precession: 1-order #0-order or 1-order
+    forward_option: True # forward or backward integration
+    int_length: 72 # integration length, in hours
+
