@@ -1,4 +1,5 @@
-# Super Lightweight Backward trajectory calculation based on WRFOUT UVW
+# Easy-WRF-Trck
+A Super Lightweight Backward trajectory calculation based on WRFOUT UVW
 
 **Backward trajectory calculation is based on the linear interpolation and first-guess velocity for efficiency. Accurate calculation agrithm can be found in http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-14-00110.1**
 
