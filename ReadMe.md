@@ -1,5 +1,8 @@
 # Easy-WRF-Trck
-A Super Lightweight Backward trajectory calculation based on WRFOUT UVW
+Easy-WRF-Trck is a super lightweight Lagrangian model for calculating millions of WRF trajectories. 
+It implements super simplified python multiprocessing to parallelize the integration 
+
+
 
 **Backward trajectory calculation is based on the linear interpolation and first-guess velocity for efficiency. Accurate calculation agrithm can be found in http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-14-00110.1**
 
