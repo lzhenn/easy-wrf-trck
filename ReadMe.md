@@ -1,17 +1,18 @@
 # Easy-WRF-Trck
 
+Easy-WRF-Trck is a super lightweight Lagrangian model for calculating thousands (even millions) of WRF trajectories simultaneously and efficiently. 
+It implements super simplified equations of 3-D motion to accelerate integration, and python multiprocessing is also involved to parallelize the model integration.
+Due to its simplification and parallelization, Easy-WRF-Trck performs great speed in tracing massive air mass points, even in calculating millions of trajectories simultaneously.
+
+**Caution: Trajectory calculation is based on the nearest-neighbor interpolation and first-guess velocity for super efficiency. Accurate calculation algorithm can be found on http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-14-00110.1, or use a professional and complicated model e.g. [NOAA HYSPLIT](https://www.ready.noaa.gov/HYSPLIT.php) instead.**
+
 ### Galleries
 
 #### Ocean Grid Cracker
 <img src="https://raw.githubusercontent.com/Novarizark/easy-wrf-trck/master/fig/oceangrid.bmp.gif" alt="oceangrid_emitter" align=center />
 
 #### Mangkhut (1822) 
-
-Easy-WRF-Trck is a super lightweight Lagrangian model for calculating thousands (even millions with large memory machine) of WRF trajectories simultaneously and efficiently. 
-It implements super simplified equations of 3-D motion to accelerate integration, and python multiprocessing is also involved to parallelize the model integration.
-Due to its simplification and parallelization, Easy-WRF-Trck performs great speed in tracing large-scale air mass points, even in calculating millions of trajectories simultaneously.
-
-**Caution: Trajectory calculation is based on the nearest-neighbor interpolation and first-guess velocity for super efficiency. Accurate calculation algorithm can be found on http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-14-00110.1, or use a professional and complicated model e.g. [NOAA HYSPLIT](https://www.ready.noaa.gov/HYSPLIT.php) instead.**
+<img src="https://raw.githubusercontent.com/Novarizark/easy-wrf-trck/master/fig/mangkhut.d01.result.gif" alt="oceangrid_emitter" align=center />
 
 ### Input Files
 
