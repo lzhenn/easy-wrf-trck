@@ -1,9 +1,9 @@
 #!/bin/bash
 
-PREFIX_ARR=( "bitmap." )
+PREFIX_ARR=( "mangkhut.d01." )
 SUFFIX="png"
 STRT_F=0
-END_F=72
+END_F=71
 FRAME_DT=10 # n/100 second
 
 N_FRM=$(( $END_F - $STRT_F ))

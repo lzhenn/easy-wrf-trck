@@ -3,6 +3,9 @@
 
 import configparser
 import datetime
+import xarray as xr
+import gc
+
 from netCDF4 import Dataset
 from wrf import getvar, interplevel, ALL_TIMES 
 
@@ -27,9 +30,10 @@ class wrf_acc_fields:
     
     def __init__(self, config):
         """ construct input wrf file names """
+        
         if config['INPUT'].getboolean('input_multi_files'):
             print(print_prefix+'init multi files...')
-            strt_time=datetime.datetime.strptime(config['INPUT']['input_wrf'][-19:],'%Y-%m-%d_%H:%M:%S')
+            self.strt_t=datetime.datetime.strptime(config['INPUT']['input_wrf'][-19:],'%Y-%m-%d_%H:%M:%S')
 
             nfiles=int(config['CORE']['integration_length'])//(int(config['INPUT']['input_file_dt'])//60)
             
@@ -38,22 +42,50 @@ class wrf_acc_fields:
             self.ncfiles=[]
 
             for ii in range(0,nfiles+1):
-                fn_timestamp=strt_time+datetime.timedelta(hours=ii)
+                fn_timestamp=self.strt_t+datetime.timedelta(hours=ii)
                 self.ncfiles.append(Dataset(fname_prefix+fn_timestamp.strftime('%Y-%m-%d_%H:%M:%S')))
+            self.Z = getvar(self.ncfiles, 'z',timeidx=ALL_TIMES, method="cat")
+            self.U = getvar(self.ncfiles, 'ua',timeidx=ALL_TIMES, method="cat")
+            self.V = getvar(self.ncfiles, 'va',timeidx=ALL_TIMES, method="cat")
+            self.W = getvar(self.ncfiles, 'wa',timeidx=ALL_TIMES, method="cat")
+
+            self.xlat = getvar(self.ncfiles[0], 'XLAT')
+            self.xlon = getvar(self.ncfiles[0], 'XLONG')
+            self.xh = getvar(self.ncfiles[0], 'HGT')
+            self.final_t=self.strt_t+datetime.timedelta(hours=int(config['CORE']['integration_length']))
+
+            print(print_prefix+'init multi files successfully!')
+
         else:
-                self.ncfiles=Dataset(config['INPUT']['input_wrf'])
+            print(print_prefix+'init from single input file...')
+            self.ncfiles=Dataset(config['INPUT']['input_wrf'])
             
-        self.Z = getvar(self.ncfiles, 'z',timeidx=ALL_TIMES, method="cat")
-        self.U = getvar(self.ncfiles, 'ua',timeidx=ALL_TIMES, method="cat")
-        self.V = getvar(self.ncfiles, 'va',timeidx=ALL_TIMES, method="cat")
-        self.W = getvar(self.ncfiles, 'wa',timeidx=ALL_TIMES, method="cat")
+            print(print_prefix+'init from single input file for lat2d, lon2d, and hgt')
+            self.xlat = getvar(self.ncfiles, 'XLAT')
+            self.xlon = getvar(self.ncfiles, 'XLONG')
+            self.xh = getvar(self.ncfiles, 'HGT')
+            
+            self.strt_t=datetime.datetime.utcfromtimestamp(self.xlat.Time.values.tolist()/1e9)
+            self.final_t=self.strt_t+datetime.timedelta(hours=int(config['CORE']['integration_length']))
+            print(print_prefix+'Init T:%s, End T:%s' %(self.strt_t.strftime('%Y-%m-%d_%H:%M:%S'), self.final_t.strftime('%Y-%m-%d_%H:%M:%S')))
+            print(print_prefix+'init from single input file for Z4d')
+            var_tmp = getvar(self.ncfiles, 'z',timeidx=ALL_TIMES, method="cat")
+            self.Z=var_tmp
 
-        self.xlat = getvar(self.ncfiles[0], 'XLAT')
-        self.xlon = getvar(self.ncfiles[0], 'XLONG')
-        self.xh = getvar(self.ncfiles[0], 'HGT')
-        self.final_t=strt_time+datetime.timedelta(hours=int(config['CORE']['integration_length']))
+            print(print_prefix+'init from single input file for U4d')
+            var_tmp = getvar(self.ncfiles, 'ua',timeidx=ALL_TIMES, method="cat")
+            self.U=var_tmp
+            print(print_prefix+'init from single input file for V4d')
+            var_tmp = getvar(self.ncfiles, 'va',timeidx=ALL_TIMES, method="cat")
+            self.V=var_tmp
+            print(print_prefix+'init from single input file for W4d')
+            var_tmp = getvar(self.ncfiles, 'wa',timeidx=ALL_TIMES, method="cat")
+            self.W=var_tmp
+            del var_tmp
+            gc.collect()
 
-        print(print_prefix+'init multi files successfully!')
+
+            print(print_prefix+'init multi files successfully!')
 
 if __name__ == "__main__":
     pass

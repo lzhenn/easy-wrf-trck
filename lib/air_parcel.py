@@ -29,10 +29,10 @@ class air_parcel:
 
     '''
     
-    def __init__(self, idx, lat0, lon0, height0, config):
+    def __init__(self, idx, lat0, lon0, height0, config, strt_t):
         """ construct air parcel obj """
         
-        self.t0=datetime.datetime.strptime(config['INPUT']['input_wrf'][-19:],'%Y-%m-%d_%H:%M:%S')
+        self.t0=strt_t
         self.dt=datetime.timedelta(minutes=int(config['CORE']['time_step']))
 
         self.idx = idx
@@ -63,7 +63,7 @@ class air_parcel:
         df=pd.DataFrame(out_data, index=self.t[::outfrq_per_dt])
         df.to_csv(out_fn)
 
-def acc_output(airp_lst, num_acc,cfg):
+def acc_output(airp_lst, num_acc, cfg, prefix=''):
     """ 
     output air parcel records according to configurations (accumulated)
     """
@@ -82,7 +82,7 @@ def acc_output(airp_lst, num_acc,cfg):
         acc_lon.extend(airp.lon[::outfrq_per_dt]) 
         acc_h.extend(airp.h[::outfrq_per_dt]) 
         if ipos % num_acc ==0:
-            out_fn='./output/P%06d.I%s.E%s' % (int(airp.idx), airp.t0.strftime("%Y%m%d%H%M%S"), airp.t[-1].strftime("%Y%m%d%H%M%S"))
+            out_fn='./output/%sP%06d.I%s.E%s' % (prefix, int(airp.idx), airp.t0.strftime("%Y%m%d%H%M%S"), airp.t[-1].strftime("%Y%m%d%H%M%S"))
             with open(out_fn, 'w', newline='') as csvfile:
                 spamwriter = csv.writer(csvfile, delimiter=',')
                 for row in zip(acc_t, acc_lat, acc_lon, acc_h):

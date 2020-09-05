@@ -104,13 +104,13 @@ def main_run():
     print('Easy WRF Trac Start...')
     
     print('Read Config...')
-    cfg_hdl=read_cfg('./conf/config.ini')
+    cfg_hdl=read_cfg('./conf/config_gba_d01.ini')
     
     print('Init Fields...')
     fields_hdl=lib.preprocess_wrfinp.wrf_acc_fields(cfg_hdl)
    
     print('Construct Input Air Parecels...')
-    air_in_fhdl=pd.read_csv('./input/input.csv', names=['idx','lat0', 'lon0', 'h0'], index_col='idx')
+    air_in_fhdl=pd.read_csv('./input/input_GBA_d01.csv', names=['idx','lat0', 'lon0', 'h0'], index_col='idx')
 
 
     airp_lst=[] # all traced air parcel packaged into a list
@@ -179,7 +179,7 @@ def main_run():
            # end if <Muiltiple, Seriel>
 
     print('Output...')
-    lib.air_parcel.acc_output(airp_lst, 5000, cfg_hdl)
+    lib.air_parcel.acc_output(airp_lst, 5000, cfg_hdl, prefix='gba.d01.')
 
 
 

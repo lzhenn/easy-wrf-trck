@@ -13,7 +13,7 @@ sys.path.append('../')
 from lib.cfgparser import read_cfg, write_cfg
 
 mo_lst=['01', '04', '07', '10']
-ini_date=datetime.datetime.strptime('2016010112','%Y%m%d%H')
+ini_date=datetime.datetime.strptime('2016101212','%Y%m%d%H')
 final_date=datetime.datetime.strptime('2016103012','%Y%m%d%H')
 
 ini_delta=datetime.timedelta(days=3)
