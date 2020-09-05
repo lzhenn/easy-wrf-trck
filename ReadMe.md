@@ -1,7 +1,11 @@
 # Easy-WRF-Trck
 
 ### Galleries
-<img src="https://raw.githubusercontent.com/Novarizark/easy-wrf-trck/master/fig/oceangrid.bmp.gif" width = "500" height = "377" alt="oceangrid_emitter" align=center />
+
+#### Ocean Grid Cracker
+<img src="https://raw.githubusercontent.com/Novarizark/easy-wrf-trck/master/fig/oceangrid.bmp.gif" alt="oceangrid_emitter" align=center />
+
+#### Mangkhut (1822) 
 
 Easy-WRF-Trck is a super lightweight Lagrangian model for calculating thousands (even millions with large memory machine) of WRF trajectories simultaneously and efficiently. 
 It implements super simplified equations of 3-D motion to accelerate integration, and python multiprocessing is also involved to parallelize the model integration.
