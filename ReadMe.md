@@ -5,6 +5,7 @@ It implements super simplified equations of 3-D motion to accelerate integration
 Due to its simplification and parallelization, Easy-WRF-Trck performs great speed in tracing massive air mass points, even in calculating millions of trajectories simultaneously.
 
 **Caution: Trajectory calculation is based on the nearest-neighbor interpolation and first-guess velocity for super efficiency. Accurate calculation algorithm can be found on http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-14-00110.1, or use a professional and complicated model e.g. [NOAA HYSPLIT](https://www.ready.noaa.gov/HYSPLIT.php) instead.**
+**Any question, please contact [Zhenning LI](novarizark@gmail.com)**
 
 ### Galleries
 
