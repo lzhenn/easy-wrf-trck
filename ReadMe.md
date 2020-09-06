@@ -11,7 +11,7 @@ Due to its simplification and parallelization, Easy-WRF-Trck performs great spee
 #### Ocean Grid Cracker
 <img src="https://raw.githubusercontent.com/Novarizark/easy-wrf-trck/master/fig/oceangrid.bmp.gif" alt="oceangrid_emitter" align=center />
 
-#### Mangkhut (1822) 
+#### Mangkhut (1822) Firework 
 <img src="https://raw.githubusercontent.com/Novarizark/easy-wrf-trck/master/fig/mangkhut.d01.result.gif" alt="oceangrid_emitter" align=center />
 
 ### Input Files
