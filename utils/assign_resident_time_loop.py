@@ -36,7 +36,7 @@ if __name__ == "__main__":
     mindis=0.3
 
     mo_lst=['01', '04', '07', '10']
-    ini_date=datetime.datetime.strptime('2016070312','%Y%m%d%H')
+    ini_date=datetime.datetime.strptime('2016100312','%Y%m%d%H')
     final_date=datetime.datetime.strptime('2016103012','%Y%m%d%H')
 
     ini_delta=datetime.timedelta(days=3)

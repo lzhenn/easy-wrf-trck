@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PREFIX_ARR=( "mangkhut.d01." )
+PREFIX_ARR=( "halogen.d01." )
 SUFFIX="png"
 STRT_F=0
 END_F=71
