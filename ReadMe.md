@@ -1,8 +1,10 @@
 # Easy-WRF-Trck
 
 Easy-WRF-Trck is a super lightweight Lagrangian model for calculating thousands (even millions) of WRF trajectories simultaneously and efficiently. 
-It implements super simplified equations of 3-D motion to accelerate integration, and python multiprocessing is also involved to parallelize the model integration.
-Due to its simplification and parallelization, Easy-WRF-Trck performs great speed in tracing massive air mass points, even in calculating millions of trajectories simultaneously.
+It implements super simplified equations of 3-D motion to accelerate integration, and python multiprocessing to parallelize the integration tasks.
+Due to its simplification and parallelization, Easy-WRF-Trck performs great speed in tracing massive air parcels, which makes **areawide** tracing possible.
+
+Another version using ERA5 Reanalysis to drive the model can be found [here](https://github.com/Novarizark/easy-era5-trck).
 
 **Caution: Trajectory calculation is based on the nearest-neighbor interpolation and first-guess velocity for super efficiency. Accurate calculation algorithm can be found on http://journals.ametsoc.org/doi/abs/10.1175/BAMS-D-14-00110.1, or use a professional and complicated model e.g. [NOAA HYSPLIT](https://www.ready.noaa.gov/HYSPLIT.php) instead.**
 
